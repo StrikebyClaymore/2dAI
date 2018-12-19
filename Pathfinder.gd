@@ -1,5 +1,7 @@
 extends Node
 
+onready var map = global.map_node
+
 class Cell:
 	var pos = Vector2(0, 0)
 	var g = 0
@@ -20,14 +22,12 @@ var locked = []
 func _ready():
 	pass
 
-func FindPath(start, end, enemy):
+func FindPath(start, end, enemy = null):
 	if start == end:
 		return []
 	
 	var openSet = []
 	var closedSet = []
-	
-	var closeCells = []
 	
 	var startCell = Cell.new()
 	startCell.init(GlobalToPoint(start), 0, GetHeuristicPathLength(GlobalToPoint(start), GlobalToPoint(end)), null)
@@ -45,7 +45,7 @@ func FindPath(start, end, enemy):
 		openSet.erase(currentCell)
 		closedSet.append(currentCell)
 		
-		for nc in GetNeighbours(currentCell, end, enemy, closeCells):
+		for nc in GetNeighbours(currentCell, end, enemy):
 			var count = 0
 			for c in closedSet:
 				if c.pos == nc.pos:
@@ -62,51 +62,15 @@ func FindPath(start, end, enemy):
 			elif openCell.g > nc.g:
 				openCell.cameFrom = nc.cameFrom
 				openCell.g == nc.g
-	
-	var current = closedSet[0]
-	
-	for c in closedSet:
-		if global.map_node.point_to_global(c.pos).distance_to(end) < global.map_node.point_to_global(current.pos).distance_to(end):
-			current = c
-			pass
-	#grid[global.map_node.calc_point_index(current.pos)].get_node("Sprite").modulate.r8 = 155
-	#enemy.target_position = global.map_node.point_to_global(current.pos)
-	var path = FindPath(start, global.map_node.point_to_global(current.pos), enemy)
-	if !path.empty():
-		path.append(path.front())
-	return path
+	return null
 
-func FindLockedPath(start, end, enemy):
-	print(enemy.get_name())
-	GetCell(start).get_node("Sprite").modulate.r8 = 155
-	pass
-
-func PathForObstacles(enemy):
-	var dists_to_target = []
-	var dists_to_enemy = []
-	var current = null
-	if !locked.empty():
-		current = locked[0]
-	for c in locked:
-		dists_to_target.append(c.position.distance_to(enemy.target_position))
-		dists_to_enemy.append(c.position.distance_to(enemy.position))
-	var c_idx = 0
-	var c_dist = dists_to_target[0] + dists_to_enemy[0]
-	for i in range(1, locked.size()-1):
-		if dists_to_target[i] + dists_to_enemy[i] < c_dist:
-			c_idx = i 
-			#c_dist = dists_to_target[i] + dists_to_enemy[i]
-	locked[c_idx].open = true
-	grid[global.map_node.calc_point_index(GlobalToPoint(locked[c_idx].position))].open = true
-	return FindPath(enemy.position, locked[c_idx].position, enemy, true)
-
-func GetCost():
-	return 1
+func GetCost(point):
+	return grid[global.map_node.calc_point_index(point)].cost
 
 func GetHeuristicPathLength(pos1, pos2):
 	return (abs(pos1.x - pos2.x) + abs(pos1.y - pos2.y))
 
-func GetNeighbours(cell, end, enemy, closeCells):
+func GetNeighbours(cell, end, target = null):
 	var neighbors = []
 	var points = PoolVector2Array([cell.pos + Vector2(-1, 0), cell.pos + Vector2(1, 0),
 								cell.pos + Vector2(0, -1), cell.pos + Vector2(0, 1),
@@ -115,22 +79,17 @@ func GetNeighbours(cell, end, enemy, closeCells):
 	for point in points:
 		var x = point.x
 		var y = point.y
+		if map.calc_point_index(point) > grid.size()-1:
+			continue
+		var tile = grid[map.calc_point_index(point)]
 		if (x < 0 || x > global.map_node.map_size.x/global.map_node.ts - 1) || (y < 0 || y > global.map_node.map_size.y/global.map_node.ts - 1):
 			continue
-		if global.map_node.calc_point_index(point) > grid.size():
+		if (target == global.cell && tile != global.cell) && !tile.open:
 			continue
-		if !grid[global.map_node.calc_point_index(point)].open && grid[global.map_node.calc_point_index(point)] != global.cell:
-			closeCells.append(grid[global.map_node.calc_point_index(point)])
+		if target != global.cell && tile != target.tile_cell && !tile.open:
 			continue
-		#for e in get_tree().get_nodes_in_group("enemy"):
-		#	if enemy == e || point == GlobalToPoint(e.position):
-		#		continue
-		#	if e.path != null && !e.path.empty():
-		#		for c in e.path:
-		#			if c == point:
-		#				continue	
 		var nc = Cell.new()
-		nc.init(point, cell.g + GetCost(), GetHeuristicPathLength(point, GlobalToPoint(end)), cell)
+		nc.init(point, cell.g + GetCost(point), GetHeuristicPathLength(point, GlobalToPoint(end)), cell)
 		neighbors.append(nc)
 	return neighbors
 
