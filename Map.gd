@@ -47,13 +47,17 @@ func add_tile(pos, type):
 	tile.position = pos
 	tile.idx = calc_cell_index(pos)
 	global.current_scene.add_child(tile)
+	if type == 2:
+		global.pathfinder_node.grid[calc_cell_index(pos)].wall = tile
+		global.pathfinder_node.grid[calc_cell_index(pos)].cost = global.pathfinder_node.grid[calc_cell_index(pos)].wall.cost
 
 func create_enemy(pos, cell):
 	cell.open = false
 	var e = Enemy.instance()
-	e.cell = cell
+	e.tile_cell = cell
 	e.position = pos
 	global.current_scene.add_child(e)
+	e.tile_cell.mob = e
 	print("Spawn " + e.get_name())
 	pass
 
