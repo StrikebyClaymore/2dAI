@@ -17,6 +17,7 @@ config/icon="res://images/red_human.png"
 [autoload]
 
 global="*res://Global.gd"
+timers="*res://Timers.gd"
 
 [display]
 

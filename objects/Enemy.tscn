@@ -13,13 +13,4 @@ texture = ExtResource( 1 )
 script = ExtResource( 2 )
 _sections_unfolded = [ "Z Index" ]
 
-[node name="Timer" type="Timer" parent="." index="0"]
-
-process_mode = 1
-wait_time = 0.1
-one_shot = true
-autostart = false
-
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
-
 

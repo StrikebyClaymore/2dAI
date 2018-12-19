@@ -9,8 +9,8 @@ custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
 [node name="Wall" type="StaticBody2D" groups=[
-"wall",
 "static",
+"wall",
 ]]
 
 editor/display_folded = true

@@ -7,3 +7,4 @@ func _ready():
 func init():
 	open = false
 	global.pathfinder_node.locked.append(self)
+	cost = 20

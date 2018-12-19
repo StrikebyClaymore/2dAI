@@ -5,3 +5,4 @@ func _ready():
 
 func init():
 	print("Current scene initilized. Her name is " + get_name())
+
