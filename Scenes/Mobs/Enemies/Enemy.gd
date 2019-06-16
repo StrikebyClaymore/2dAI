@@ -7,7 +7,7 @@ var speed_scale: int = 8
 var old_position: Vector2
 var move_lock: = false
 var collide: = false
-var collider: Array
+var collider: = []
 
 var z_level: int = 0
 var floor_node: TileMap
@@ -21,6 +21,7 @@ var next_pos: Vector2
 var step_to_next_cell: = false
 var step_priority: int = 0
 var skip_step: = false
+var stack_num: int = 0
 
 var life: = false
 
@@ -37,6 +38,7 @@ func init():
 	set_life()
 	set_label_text()
 	set_target(global.player)
+	get_node("Priority").set_text(str(step_priority))
 
 func _physics_process(delta):
 	AI(delta)
@@ -44,6 +46,7 @@ func _physics_process(delta):
 
 func AI(dt: float):
 	if path.size() > 1:
+		if skip_step: return
 		if move_lock:
 			move(dt)
 		else:#elif dir == Vector2.ZERO:
@@ -52,6 +55,14 @@ func AI(dt: float):
 
 func set_dir():
 	if path.size() < 1: return
+	
+	if cell_pos == get_map_pos(old_position):
+		stack_num += 1
+	if stack_num > 1:
+		stack_num = 0
+		break_move()
+		return
+	
 	if path.size() == 1:
 		dir = Vector2(path[0].x, path[0].y) - get_map_pos(position)
 	else:
@@ -61,60 +72,59 @@ func set_dir():
 		Vector2.LEFT: $Animation.play("move_left")
 		Vector2.DOWN: $Animation.play("move_down")
 		Vector2.RIGHT: $Animation.play("move_right")
+	#if step_priority == 0:
+	#	print(path.size(), " ", cell_pos, " ", get_map_pos(old_position))
 	path.remove(0)
 
 func move(dt: float):
-	if collide: return
+	#if collide:
+		#collide = false
+		#change_move_status(Vector2.ZERO)
+		#find_path()
+		#return
+	#if collide: print(1)
 	var dist = old_position.distance_to(position)
 	if dist >= 32: return
-	if skip_step: return
 	if !step_to_next_cell && dist > 16:
 		step_to_next_cell = true
 		cell_pos = get_map_pos(position)
 		nav_2d.block_cell(cell_pos, true)
 		nav_2d.block_cell(get_map_pos(old_position), false)
-		for c in collider:
-			if next_pos == c.next_pos:
-				if funcs.bool_rand():
-					skip_step = true
-					return
-		#for c in collider:
-		#	if next_pos == c.next_pos:
-		#		if step_priority < c.step_priority:
-		#			skip_step = true
-		#			print(1)
-		#			return
-		#		elif step_priority == c.step_priority:
-		#			print(name, " ", step_priority, " ", c.name, " ", c.step_priority)
+		
+	if need_skip_step(): return
+	
 	var rel_vec: = Vector2(round((dir*ts*dt*speed_scale).x), round((dir*ts*dt*speed_scale).y))
 	move_and_collide(rel_vec)
 	move_and_slide(Vector2.ZERO)
 	get_collider()
-	#if is_on_wall():
-	#	collide = true
-	#	if get_cells_collider() != -1:
-	#		print("Collide with some object")
 
-func priority_distribution():
-	if collider.has(self): collider.remove(collider.find(self))
-	var priority_list: = [[position.distance_to(target.position), self]]
+func break_move():
+	change_move_status(Vector2.ZERO)
+	find_path()
+	move_lock = false
+
+func need_skip_step():
+	if collide:
+		$Animation.play("skip_step")
+		return true
 	for c in collider:
-		priority_list.append([c.position.distance_to(c.target.position), c])
-	priority_list.sort_custom(funcs.sort_by, "num")
-	for i in priority_list.size():
-		priority_list[i][1].step_priority = i
-	for i in priority_list.size():
-		if priority_list[i][1] == self:
-			priority_list.remove(i)
-			break
-	print(priority_list)
+		if next_pos == c.next_pos:
+			if step_priority < c.step_priority:
+				$Animation.play("skip_step")
+				return true
+	return false
+
+func set_skip_step():
+	skip_step != skip_step
+	if !skip_step:
+		break_move()
 
 func change_move_status(dir: = Vector2.ZERO):
 	if dir != Vector2.ZERO:
-		#priority_distribution()
 		old_position = position
 		next_pos = position + dir*ts
 	else:
+		#skip_step = false
 		step_to_next_cell = false
 		collide = false
 		position = get_map_pos()*ts + size/2
@@ -128,13 +138,16 @@ func get_collider():
 		var collision = get_slide_collision(i)
 		collide = true
 		if collision.collider is TileMap:
+			unstack()
 			#print(self.name + " collide with some object")
-			pass
 		elif collision.collider is KinematicBody2D:
+			unstack()
 			#print(self.name + " collided with: ", collision.collider.name)
-			pass
 		else:
 			collide = false
+
+func unstack():
+	position = get_map_pos()*ts + size/2
 
 func get_cells_collider():
 	return walls_node.get_cellv(walls_node.world_to_map(old_position+dir*32))
@@ -164,9 +177,19 @@ func find_path():
 	#path.remove(0)
 
 func _on_Area2D_body_entered(body):
-	if body != self && body.is_in_group("enemy") && !collider.has(body):
+	if body != self && body.is_in_group("enemy"):
 		collider.append(body)
 
 func _on_Area2D_body_exited(body):
 	if body.is_in_group("enemy"):
 		collider.remove(collider.find(body))
+
+func _on_Enemy_mouse_entered():
+	var info: = ("Skip_step: " + str(skip_step) + "; Move_lock: " + str(move_lock) +
+				"; Stack_num: " + str(stack_num))
+	global.current_scene.get_node("GUI/Panel/Label").set_text(info)
+	modulate.r8 = 0
+
+func _on_Enemy_mouse_exited():
+	modulate.r8 = 255
+	global.current_scene.get_node("GUI/Panel/Label").set_text("")

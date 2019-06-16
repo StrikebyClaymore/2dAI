@@ -11,6 +11,8 @@ var map_size: = OS.window_size/tile_size
 var player: KinematicBody2D
 var GUI: CanvasLayer
 
+var enemies: int = 0
+
 func _ready():
 	var root = get_tree().get_root()
 	current_scene = root.get_child(root.get_child_count() - 1)

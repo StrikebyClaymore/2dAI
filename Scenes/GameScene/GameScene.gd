@@ -23,7 +23,9 @@ func add_enemy(type: = 0, pos: = Vector2(0, 0)):
 	match type:
 		0: e = Enemy_tscn.instance()
 	e.position = pos
+	e.step_priority = global.enemies
 	add_child(e)
+	global.enemies += 1
 
 func world_to_map(pos: Vector2):
 	return floor_container.world_to_map(pos)

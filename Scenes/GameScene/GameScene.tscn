@@ -30,3 +30,20 @@ tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 
 tile_set = ExtResource( 5 )
 cell_size = Vector2( 32, 32 )
 format = 1
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="GUI"]
+margin_left = 380.0
+margin_top = -1.0
+margin_right = 648.0
+margin_bottom = 101.0
+
+[node name="Label" type="Label" parent="GUI/Panel"]
+margin_left = 5.0
+margin_top = 4.0
+margin_right = 265.0
+margin_bottom = 102.0
+align = 1
+valign = 1
+autowrap = true
