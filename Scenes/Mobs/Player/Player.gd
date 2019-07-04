@@ -38,17 +38,22 @@ func _physics_process(delta):
 
 func move(dt: float):
 	if collide: return
+	
 	var dist = old_position.distance_to(position)
 	if dist >= 32: return
+	
 	#if !step_to_next_cell && dist > 16:
 	#	step_to_next_cell = true
 	#	cell_pos = get_map_pos(position)
 	#	nav_2d.block_cell(cell_pos, true)
 	#	nav_2d.block_cell(get_map_pos(old_position), false)
+	
 	var rel_vec: = Vector2(round((dir*ts*dt*speed_scale).x), round((dir*ts*dt*speed_scale).y))
 	move_and_collide(rel_vec)
 	move_and_slide(Vector2.ZERO)
+	
 	get_collider()
+	
 	#if is_on_wall():
 	#	collide = true
 	#	if get_cells_collider() != -1:
@@ -86,10 +91,10 @@ func get_map_pos(pos: = position):
 	return floor_node.world_to_map(pos)
 
 func get_input():
-	if Input.is_action_just_pressed("l_click"):
-		position = get_map_pos(get_global_mouse_position())*ts + size/2
-	if Input.is_action_just_pressed("r_click"):
-		global.current_scene.add_enemy(0, get_map_pos(get_global_mouse_position())*ts + size/2)
+	#if Input.is_action_just_pressed("l_click"):
+	#	position = get_map_pos(get_global_mouse_position())*ts + size/2
+	#if Input.is_action_just_pressed("r_click"):
+	#	global.current_scene.add_enemy(0, get_map_pos(get_global_mouse_position())*ts + size/2)
 	if move_lock: return
 	if Input.is_action_pressed("w"):
 		$Animation.play("move_up")

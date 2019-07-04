@@ -1,0 +1,441 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://Scenes/Mobs/Player/Doll/Doll.gd" type="Script" id=1]
+[ext_resource path="res://Imgs/Doll/doll_scalp.png" type="Texture" id=2]
+[ext_resource path="res://Imgs/Doll/doll_head.png" type="Texture" id=3]
+[ext_resource path="res://Imgs/Doll/doll_eye.png" type="Texture" id=4]
+[ext_resource path="res://Imgs/Doll/doll_ear.png" type="Texture" id=5]
+[ext_resource path="res://Imgs/Doll/doll_nose.png" type="Texture" id=6]
+[ext_resource path="res://Imgs/Doll/doll_mouth.png" type="Texture" id=7]
+[ext_resource path="res://Imgs/Doll/doll_neck.png" type="Texture" id=8]
+[ext_resource path="res://Imgs/Doll/doll_lung.png" type="Texture" id=9]
+[ext_resource path="res://Imgs/Doll/doll_heart.png" type="Texture" id=10]
+[ext_resource path="res://Imgs/Doll/doll_tors.png" type="Texture" id=11]
+[ext_resource path="res://Imgs/Doll/doll_groind.png" type="Texture" id=12]
+[ext_resource path="res://Imgs/Doll/doll_shoulder.png" type="Texture" id=13]
+[ext_resource path="res://Imgs/Doll/doll_forearm.png" type="Texture" id=14]
+[ext_resource path="res://Imgs/Doll/doll_hand.png" type="Texture" id=15]
+[ext_resource path="res://Imgs/Doll/doll_hip.png" type="Texture" id=16]
+[ext_resource path="res://Imgs/Doll/doll_shin.png" type="Texture" id=17]
+[ext_resource path="res://Imgs/Doll/doll_foot.png" type="Texture" id=18]
+
+[node name="Doll" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="head" type="Node2D" parent="."]
+editor/display_folded = true
+
+[node name="scalp" type="Area2D" parent="head"]
+editor/display_folded = true
+position = Vector2( 0, -5 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="head/scalp"]
+texture = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="head/scalp"]
+polygon = PoolVector2Array( -4.0287, -0.534471, -3.97668, -1.52294, -3.06625, -1.52294, -3.05473, -2.52531, 2.9686, -2.48539, 2.99462, -1.54895, 4.00909, -1.4449, 4.03511, -0.482447, 5.00908, -0.496352, 5.03509, 0.466102, 4.03511, 0.480008, 3.98308, 1.46848, 3.02063, 1.49449, 3.00613, 2.46905, -2.9622, 2.48295, -2.9622, 1.54651, -3.97668, 1.44246, -4.0287, 0.532033, -5.03166, 0.518126, -5.03166, -0.522365 )
+
+[node name="head" type="Area2D" parent="head"]
+editor/display_folded = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="head/head"]
+position = Vector2( 0, 1 )
+texture = ExtResource( 3 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="head/head"]
+polygon = PoolVector2Array( -5.00564, -4.4819, -4.01718, -4.48187, -3.96515, -3.54546, -2.97669, -3.49343, -2.92466, -2.53098, 2.96294, -2.50849, 2.96294, -3.52295, 4.02061, -3.54543, 4.04662, -4.53392, 5.00908, -4.50791, 5.03509, 3.52988, 3.9946, 3.50387, 4.01644, 4.55957, 2.98012, 4.57037, 3.03215, 5.4808, 0.973003, 5.49601, 0.973003, 6.47147, -1.09497, 6.47147, -1.09497, 5.49601, -3.04589, 5.53503, -3.08491, 4.48153, -3.98233, 4.48153, -4.02135, 3.54509, -5.03583, 3.50607 )
+
+[node name="left_eye" type="Area2D" parent="head"]
+editor/display_folded = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="head/left_eye"]
+position = Vector2( 2, -0.5 )
+texture = ExtResource( 4 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="head/left_eye"]
+polygon = PoolVector2Array( 0.977177, -1.54251, 0.951164, 0.512455, 3.00587, 0.485625, 3.02899, -1.49131 )
+
+[node name="right_eye" type="Area2D" parent="head"]
+editor/display_folded = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="head/right_eye"]
+position = Vector2( -2.01162, -0.485562 )
+texture = ExtResource( 4 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="head/right_eye"]
+polygon = PoolVector2Array( -3.02871, -1.54251, -3.04344, 0.507239, -0.962454, 0.507239, -0.973743, -1.49049 )
+
+[node name="left_ear" type="Area2D" parent="head"]
+editor/display_folded = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="head/left_ear"]
+position = Vector2( 5.54061, -1.01448 )
+texture = ExtResource( 5 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="head/left_ear"]
+polygon = PoolVector2Array( 4.98307, -3.0512, 6.04957, -3.0512, 6.06955, 0.994311, 5.00593, 0.994311 )
+
+[node name="right_ear" type="Area2D" parent="head"]
+editor/display_folded = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="head/right_ear"]
+position = Vector2( -5.5146, -1.22258 )
+texture = ExtResource( 5 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="head/right_ear"]
+polygon = PoolVector2Array( -5.02037, -3.29055, -6.02012, -3.31132, -6.04614, 0.824628, -5.03166, 0.824628 )
+
+[node name="nose" type="Area2D" parent="head"]
+editor/display_folded = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="head/nose"]
+position = Vector2( 0, 2 )
+texture = ExtResource( 6 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="head/nose"]
+polygon = PoolVector2Array( -1.0115, 1.45669, -1.02306, 2.48562, 1.0348, 2.48562, 1.02324, 1.46825 )
+
+[node name="mouth" type="Area2D" parent="head"]
+editor/display_folded = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="head/mouth"]
+position = Vector2( 0, 4 )
+texture = ExtResource( 7 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="head/mouth"]
+polygon = PoolVector2Array( -0.99994, 3.47987, -0.99994, 4.49725, 1.00012, 4.50881, 1.01168, 3.503 )
+
+[node name="body" type="Node2D" parent="."]
+editor/display_folded = true
+
+[node name="neck" type="Area2D" parent="body"]
+editor/display_folded = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="body/neck"]
+position = Vector2( -0.0260124, 7.98577 )
+texture = ExtResource( 8 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="body/neck"]
+polygon = PoolVector2Array( -3.04025, 5.47435, -3.04025, 9.53227, -1.08933, 9.53227, -1.06331, 10.4687, 0.965642, 10.4687, 0.965642, 9.50625, 3.04662, 9.53227, 2.96859, 5.42233 )
+
+[node name="left_lung" type="Area2D" parent="body"]
+editor/display_folded = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="body/left_lung"]
+position = Vector2( 3.43362, 14.5148 )
+texture = ExtResource( 9 )
+flip_h = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="body/left_lung"]
+polygon = PoolVector2Array( 0.936441, 9.51917, 3.90184, 9.51917, 3.90184, 10.5076, 4.91632, 10.5076, 4.94233, 11.5481, 5.95681, 11.5741, 5.95681, 12.5106, 6.89325, 12.5366, 6.94527, 16.4644, 5.90478, 16.5425, 5.9308, 17.4789, 4.94233, 17.5309, 4.96834, 18.5454, 3.95386, 18.5194, 3.95386, 19.5079, 0.884417, 19.5339, 0.910429, 18.5454, -0.0260124, 18.5194, -0.0260124, 10.4296, 0.910429, 10.5076 )
+
+[node name="right_lung" type="Area2D" parent="body"]
+editor/display_folded = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="body/right_lung"]
+position = Vector2( -3.51166, 14.5148 )
+texture = ExtResource( 9 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="body/right_lung"]
+polygon = PoolVector2Array( -1.0665, 9.51917, -4.05791, 9.51917, -4.0319, 10.4816, -5.04638, 10.4556, -5.04638, 11.4701, -6.06086, 11.4701, -6.03485, 12.5366, -7.10135, 12.5106, -7.07534, 16.5165, -6.00883, 16.5165, -6.03485, 17.557, -5.0984, 17.583, -5.04638, 18.5714, -4.00589, 18.5714, -4.05791, 19.5339, -1.04049, 19.5339, -1.04049, 18.4934, -0.0269413, 18.457, 0.0120773, 10.4582, -1.01448, 10.4296 )
+
+[node name="heart" type="Area2D" parent="body"]
+editor/display_folded = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="body/heart"]
+position = Vector2( 2.47117, 14.827 )
+texture = ExtResource( 10 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="body/heart"]
+polygon = PoolVector2Array( 0.936442, 12.3506, 1.97693, 12.3506, 1.96538, 13.2919, 2.9654, 13.3131, 2.99141, 12.2986, 3.95387, 12.2986, 3.97988, 13.3391, 4.97125, 13.3497, 4.95969, 15.3035, 4.00012, 15.3035, 3.97988, 16.3305, 2.99141, 16.3305, 3.05552, 17.3254, 1.963, 17.2864, 1.95092, 16.3565, 0.962455, 16.3305, 0.936445, 15.3729, 0.0192771, 15.3613, 0.00771618, 13.315, 0.959567, 13.315 )
+
+[node name="tors" type="Area2D" parent="body"]
+editor/display_folded = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="body/tors"]
+position = Vector2( -0.0520267, 22.5006 )
+texture = ExtResource( 11 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="body/tors"]
+polygon = PoolVector2Array( -7.06479, 16.4871, -6.08933, 16.5261, -6.05031, 17.4626, -5.07485, 17.4626, -5.03583, 18.4771, -4.02135, 18.4771, -4.09939, 19.4525, -1.09497, 19.4135, -1.09497, 18.5551, 0.855949, 18.5161, 0.894968, 19.4525, 0.855949, 18.5161, 0.933985, 19.4525, 3.97742, 19.5306, 3.97742, 18.4771, 4.87484, 18.4771, 4.95288, 17.4626, 5.81129, 17.4236, 5.92834, 16.4481, 6.98184, 16.5261, 6.94282, 19.5696, 5.96736, 19.6086, 5.96736, 28.5048, 4.96554, 28.503, 4.91929, 27.4625, 3.97129, 27.4625, 3.97129, 26.5029, 2.9886, 26.4798, 2.95392, 25.474, -3.03468, 25.5087, -3.03468, 26.5145, -4.05205, 26.5145, -4.04049, 27.4972, -5.0463, 27.4972, -5.0463, 28.5261, -6.05031, 28.5438, -6.03579, 19.6275, -7.05028, 19.5495 )
+
+[node name="groin" type="Area2D" parent="body"]
+editor/display_folded = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="body/groin"]
+position = Vector2( -0.046242, 28.9993 )
+texture = ExtResource( 12 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="body/groin"]
+position = Vector2( 4.76837e-007, 0.0982685 )
+polygon = PoolVector2Array( -3.0346, 25.3931, -3.0346, 26.4336, -4.07509, 26.4163, -4.04041, 27.3701, -5.0809, 27.3701, -5.04622, 28.4452, -4.04041, 28.4452, -4.04041, 29.451, -3.01726, 29.451, -3.05194, 30.4048, -2.02879, 30.4395, -2.04614, 31.3933, -1.05767, 31.4106, -1.07501, 32.4511, 0.988629, 32.4511, 0.988629, 31.4106, 1.9771, 31.4106, 1.9771, 30.3875, 2.9829, 30.4395, 2.96556, 29.451, 3.98871, 29.451, 3.95403, 28.3932, 4.95984, 28.4106, 4.95984, 27.3527, 3.97137, 27.3354, 3.98871, 26.3989, 2.9829, 26.4163, 2.9829, 25.3584 )
+
+[node name="arms" type="Node2D" parent="."]
+editor/display_folded = true
+
+[node name="left_shoulder" type="Area2D" parent="arms"]
+editor/display_folded = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="arms/left_shoulder"]
+position = Vector2( 7.4753, 13.5286 )
+texture = ExtResource( 13 )
+flip_h = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="arms/left_shoulder"]
+polygon = PoolVector2Array( 8.92814, 19.5784, 11.9456, 19.5784, 11.9716, 12.5031, 10.9571, 12.5031, 11.0351, 11.4886, 9.99465, 11.4626, 9.96863, 9.51167, 9.00618, 9.51167, 9.03219, 8.44516, 6.97721, 8.41915, 7.00322, 7.45669, 2.9453, 7.45669, 2.9453, 9.56369, 3.90775, 9.56369, 3.88174, 10.5782, 4.92224, 10.5782, 4.94825, 11.4626, 5.88469, 11.5406, 5.91071, 12.5551, 6.92519, 12.5811, 6.92519, 16.587, 7.93967, 16.535, 7.88764, 18.538, 8.92814, 18.564 )
+
+[node name="right_shoulder" type="Area2D" parent="arms"]
+editor/display_folded = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="arms/right_shoulder"]
+position = Vector2( -7.54358, 13.4744 )
+texture = ExtResource( 13 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="arms/right_shoulder"]
+polygon = PoolVector2Array( -12.0697, 19.4702, -9.02629, 19.4963, -9.02629, 18.4818, -8.03781, 18.4818, -8.03781, 16.4788, -7.07536, 16.4788, -6.99732, 12.551, -6.06087, 12.551, -6.00885, 11.4845, -5.09842, 11.4584, -5.09842, 10.4179, -4.03191, 10.444, -4.05792, 9.50751, -3.06945, 9.53353, -3.06945, 7.3745, -7.07536, 7.45254, -7.04934, 8.38898, -9.10432, 8.415, -9.02628, 9.4815, -10.0408, 9.50751, -10.0408, 11.4584, -11.0813, 11.4845, -11.0552, 12.4989, -12.0697, 12.4729 )
+
+[node name="left_forearm" type="Area2D" parent="arms"]
+editor/display_folded = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="arms/left_forearm"]
+position = Vector2( 11.4454, 24.5296 )
+texture = ExtResource( 14 )
+flip_h = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="arms/left_forearm"]
+polygon = PoolVector2Array( 8.92224, 19.5926, 12.9542, 19.5666, 12.9542, 21.5436, 13.9946, 21.5435, 13.9426, 29.5592, 10.8471, 29.563, 10.8732, 27.5004, 9.91071, 27.5004, 9.91071, 24.535, 8.89623, 24.5388 )
+
+[node name="right_forearm" type="Area2D" parent="arms"]
+editor/display_folded = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="arms/right_forearm"]
+position = Vector2( -11.5755, 24.4776 )
+texture = ExtResource( 14 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="arms/right_forearm"]
+polygon = PoolVector2Array( -13.1623, 19.4442, -9.07831, 19.4481, -9.0523, 24.5427, -10.0148, 24.5725, -10.0408, 27.5379, -11.0553, 27.5379, -11.0553, 29.4888, -14.1507, 29.4888, -14.0727, 21.451, -13.1102, 21.451 )
+
+[node name="left_hand" type="Area2D" parent="arms"]
+editor/display_folded = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="arms/left_hand"]
+position = Vector2( 12.4079, 33.0097 )
+texture = ExtResource( 15 )
+flip_h = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="arms/left_hand"]
+polygon = PoolVector2Array( 11.8876, 29.485, 13.9686, 29.537, 13.9426, 35.5719, 12.9802, 35.5719, 12.9281, 36.5344, 10.8211, 36.5083, 10.8732, 30.4214, 11.8616, 30.4214 )
+
+[node name="right_hand" type="Area2D" parent="arms"]
+editor/display_folded = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="arms/right_hand"]
+position = Vector2( -12.616, 32.9837 )
+texture = ExtResource( 15 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="arms/right_hand"]
+polygon = PoolVector2Array( -14.1507, 29.537, -14.1247, 35.4939, -13.1883, 35.4939, -13.1623, 36.5604, -11.0813, 36.5604, -11.0813, 30.4214, -12.1478, 30.4214, -12.0697, 29.459 )
+
+[node name="legs" type="Node2D" parent="."]
+editor/display_folded = true
+
+[node name="left_hip" type="Area2D" parent="legs"]
+editor/display_folded = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="legs/left_hip"]
+position = Vector2( 4.44811, 34.4664 )
+texture = ExtResource( 16 )
+flip_h = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="legs/left_hip"]
+polygon = PoolVector2Array( 3.90184, 28.4705, 6.99731, 28.4445, 6.9713, 29.407, 7.95977, 29.433, 7.98578, 39.5518, 6.9713, 39.5518, 6.99731, 40.5142, 4.91633, 40.5403, 4.89031, 39.4998, 2.86135, 39.5258, 2.91337, 37.4448, 1.87288, 37.4968, 1.9249, 35.4678, 0.936436, 35.4678, 0.936436, 31.4619, 1.95092, 31.4619, 1.95092, 30.4475, 2.91337, 30.4735, 2.91337, 29.459, 3.90184, 29.485 )
+
+[node name="right_hip" type="Area2D" parent="legs"]
+editor/display_folded = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="legs/right_hip"]
+position = Vector2( -4.55216, 34.4664 )
+texture = ExtResource( 16 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="legs/right_hip"]
+polygon = PoolVector2Array( -4.05794, 28.4965, -7.07537, 28.4185, -7.07537, 29.459, -8.14188, 29.459, -8.11586, 39.5258, -7.12739, 39.5518, -7.04936, 40.5142, -5.02039, 40.4882, -5.02039, 39.5258, -3.01744, 39.5258, -2.96542, 37.5488, -2.02897, 37.5228, -2.00296, 35.4418, -1.01449, 35.4418, -1.01449, 31.514, -2.05499, 31.488, -2.02897, 30.4735, -3.01744, 30.4214, -2.99143, 29.485, -4.08395, 29.511 )
+
+[node name="left_shin" type="Area2D" parent="legs"]
+editor/display_folded = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="legs/left_shin"]
+position = Vector2( 4.47412, 44.4551 )
+texture = ExtResource( 17 )
+flip_h = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="legs/left_shin"]
+polygon = PoolVector2Array( 4.94235, 39.5258, 1.92491, 39.4477, 1.92491, 45.5346, 2.91338, 45.5606, 2.91338, 49.4625, 5.95683, 49.4625, 5.98284, 46.5231, 6.99732, 46.5231, 6.99732, 40.3582, 4.96836, 40.4102 )
+
+[node name="right_shin" type="Area2D" parent="legs"]
+editor/display_folded = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="legs/right_shin"]
+position = Vector2( -4.57817, 44.4551 )
+texture = ExtResource( 17 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="legs/right_shin"]
+polygon = PoolVector2Array( -5.12444, 39.4477, -2.08099, 39.4477, -2.08099, 45.5346, -3.06946, 45.5086, -3.06946, 49.4365, -6.13892, 49.4365, -6.08689, 46.445, -7.12739, 46.4711, -7.10138, 40.4102, -5.12444, 40.4102 )
+
+[node name="left_foot" type="Area2D" parent="legs"]
+editor/display_folded = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="legs/left_foot"]
+position = Vector2( 6.47707, 52.9611 )
+texture = ExtResource( 18 )
+flip_h = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="legs/left_foot"]
+polygon = PoolVector2Array( 2.9854, 49.4924, 6.96529, 49.4924, 6.9913, 50.3768, 7.95376, 50.4548, 7.97977, 52.3797, 8.91622, 52.4318, 8.96824, 53.3942, 9.98272, 53.4202, 10.0087, 54.3827, 10.9452, 54.4347, 10.9712, 56.4637, 6.93928, 56.4637, 6.93928, 55.5012, 5.92479, 55.4232, 5.89878, 54.4867, 4.96234, 54.4347, 4.93633, 53.4723, 3.01141, 53.4723, 2.93337, 52.4838, 1.94491, 52.4578, 1.97092, 50.3248, 2.93337, 50.4028 )
+
+[node name="right_foot" type="Area2D" parent="legs"]
+editor/display_folded = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="legs/right_foot"]
+position = Vector2( -6.58112, 52.9612 )
+texture = ExtResource( 18 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="legs/right_foot"]
+polygon = PoolVector2Array( -3.03733, 49.4924, -7.12127, 49.4403, -7.12127, 50.4548, -8.05771, 50.4808, -8.05771, 52.4057, -9.12422, 52.4318, -9.09821, 53.4723, -10.0607, 53.4723, -10.0867, 54.3567, -11.0751, 54.3827, -11.1272, 56.4897, -7.01722, 56.4637, -7.04323, 55.5272, -6.02875, 55.5272, -6.02875, 54.5127, -5.11832, 54.5127, -5.11832, 53.4723, -3.06334, 53.4462, -3.03733, 52.4838, -1.99683, 52.4838, -2.02285, 50.3768, -3.01132, 50.3768 )
+[connection signal="input_event" from="head/scalp" to="." method="_on_scalp_input_event"]
+[connection signal="mouse_entered" from="head/scalp" to="." method="_on_scalp_mouse_entered"]
+[connection signal="mouse_exited" from="head/scalp" to="." method="_on_scalp_mouse_exited"]
+[connection signal="input_event" from="head/head" to="." method="_on_head_input_event"]
+[connection signal="mouse_entered" from="head/head" to="." method="_on_head_mouse_entered"]
+[connection signal="mouse_exited" from="head/head" to="." method="_on_head_mouse_exited"]
+[connection signal="input_event" from="head/left_eye" to="." method="_on_left_eye_input_event"]
+[connection signal="mouse_entered" from="head/left_eye" to="." method="_on_left_eye_mouse_entered"]
+[connection signal="mouse_exited" from="head/left_eye" to="." method="_on_left_eye_mouse_exited"]
+[connection signal="input_event" from="head/right_eye" to="." method="_on_right_eye_input_event"]
+[connection signal="mouse_entered" from="head/right_eye" to="." method="_on_right_eye_mouse_entered"]
+[connection signal="mouse_exited" from="head/right_eye" to="." method="_on_right_eye_mouse_exited"]
+[connection signal="input_event" from="head/left_ear" to="." method="_on_left_ear_input_event"]
+[connection signal="input_event" from="head/right_ear" to="." method="_on_right_ear_input_event"]
+[connection signal="input_event" from="head/nose" to="." method="_on_nose_input_event"]
+[connection signal="input_event" from="head/mouth" to="." method="_on_mouth_input_event"]
+[connection signal="input_event" from="body/neck" to="." method="_on_neck_input_event"]
+[connection signal="input_event" from="body/left_lung" to="." method="_on_left_lung_input_event"]
+[connection signal="input_event" from="body/right_lung" to="." method="_on_right_lung_input_event"]
+[connection signal="input_event" from="body/heart" to="." method="_on_heart_input_event"]
+[connection signal="input_event" from="body/tors" to="." method="_on_tors_input_event"]
+[connection signal="input_event" from="body/groin" to="." method="_on_groin_input_event"]
+[connection signal="input_event" from="arms/left_shoulder" to="." method="_on_left_shoulder_input_event"]
+[connection signal="input_event" from="arms/right_shoulder" to="." method="_on_right_shoulder_input_event"]
+[connection signal="input_event" from="arms/left_forearm" to="." method="_on_left_forearm_input_event"]
+[connection signal="input_event" from="arms/right_forearm" to="." method="_on_right_forearm_input_event"]
+[connection signal="input_event" from="arms/left_hand" to="." method="_on_left_hand_input_event"]
+[connection signal="input_event" from="arms/right_hand" to="." method="_on_right_hand_input_event"]
+[connection signal="input_event" from="legs/left_hip" to="." method="_on_left_hip_input_event"]
+[connection signal="input_event" from="legs/right_hip" to="." method="_on_right_hip_input_event"]
+[connection signal="input_event" from="legs/left_shin" to="." method="_on_left_shin_input_event"]
+[connection signal="input_event" from="legs/right_shin" to="." method="_on_right_shin_input_event"]
+[connection signal="input_event" from="legs/left_foot" to="." method="_on_left_foot_input_event"]
+[connection signal="input_event" from="legs/right_foot" to="." method="_on_right_foot_input_event"]

@@ -26,6 +26,9 @@ func reset_point(id:int, pos: Vector3, connections: PoolIntArray):
 func block_cell(point: Vector2, disabled: bool):
 	astar.set_point_disabled(get_point_index(point), disabled)
 
+func set_cell_weight(point: Vector2, weight: int = 1):
+	astar.set_point_weight_scale(get_point_index(point), weight)
+
 func set_level_grid(num: int = 0):
 	var grid: PoolVector2Array = get_parent().floor_container.get_child(num).get_used_cells()
 	var obstacles = get_parent().floor_container.get_child(num).get_used_cells_by_id(3)

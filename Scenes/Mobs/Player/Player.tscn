@@ -1,7 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scenes/Mobs/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/Mobs/Player/GUI.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Mobs/Player/Doll/Doll.tscn" type="PackedScene" id=4]
+[ext_resource path="res://fonts/Samson.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://GUI/Chat/Chat.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 9.77109, 9.74794 )
@@ -33,12 +37,9 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.15 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0.15 ),
+"transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ "change_pos" ],
-"method": "emit_signal"
-}, {
 "args": [ "change_pos" ],
 "method": "emit_signal"
 } ]
@@ -71,12 +72,9 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.15 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0.15 ),
+"transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ "change_pos" ],
-"method": "emit_signal"
-}, {
 "args": [ "change_pos" ],
 "method": "emit_signal"
 } ]
@@ -109,12 +107,9 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.15 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0.15 ),
+"transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ "change_pos" ],
-"method": "emit_signal"
-}, {
 "args": [ "change_pos" ],
 "method": "emit_signal"
 } ]
@@ -147,16 +142,23 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.15 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0.15 ),
+"transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ "change_pos" ],
-"method": "emit_signal"
-}, {
 "args": [ "change_pos" ],
 "method": "emit_signal"
 } ]
 }
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.219608, 0.207843, 0.207843, 1 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 14
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 5 )
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -164,10 +166,16 @@ script = ExtResource( 1 )
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2( 1.6, 1.6 )
 shape = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Label" type="Label" parent="."]
 margin_left = -16.0
@@ -176,14 +184,87 @@ margin_right = 44.0
 margin_bottom = -18.0
 text = "x: 0 y: 0"
 valign = 1
-
-[node name="Camera2D" type="Camera2D" parent="."]
-current = true
-drag_margin_h_enabled = false
-drag_margin_v_enabled = false
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Animation" type="AnimationPlayer" parent="."]
 anims/move_down = SubResource( 2 )
 anims/move_left = SubResource( 3 )
 anims/move_right = SubResource( 4 )
 anims/move_up = SubResource( 5 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2( 64, 32 )
+current = true
+drag_margin_h_enabled = false
+drag_margin_v_enabled = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GUI" type="Node2D" parent="CanvasLayer"]
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="RightPanel" type="Panel" parent="CanvasLayer/GUI"]
+margin_left = 832.0
+margin_right = 960.0
+margin_bottom = 640.0
+mouse_filter = 2
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Doll" parent="CanvasLayer/GUI/RightPanel" instance=ExtResource( 4 )]
+position = Vector2( 64, 28 )
+scale = Vector2( 3, 3 )
+
+[node name="Part_selected_text" type="Label" parent="CanvasLayer/GUI/RightPanel"]
+margin_left = 3.0
+margin_top = 200.111
+margin_right = 125.0
+margin_bottom = 220.111
+custom_styles/normal = SubResource( 7 )
+custom_fonts/font = SubResource( 6 )
+align = 1
+valign = 1
+autowrap = true
+
+[node name="BottomPanel" type="Panel" parent="CanvasLayer/GUI"]
+editor/display_folded = true
+margin_top = 544.0
+margin_right = 832.0
+margin_bottom = 640.0
+mouse_filter = 2
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Actions" type="Button" parent="CanvasLayer/GUI/BottomPanel"]
+margin_left = 3.33333
+margin_top = 1.66663
+margin_right = 95.3333
+margin_bottom = 29.6666
+text = "Actions"
+
+[node name="Commands" type="Button" parent="CanvasLayer/GUI/BottomPanel"]
+margin_left = 3.0
+margin_top = 32.6666
+margin_right = 95.0
+margin_bottom = 61.6666
+text = "Comands"
+
+[node name="ChatButton" type="Button" parent="CanvasLayer/GUI/BottomPanel"]
+margin_left = 3.33336
+margin_top = 64.9999
+margin_right = 95.3334
+margin_bottom = 92.9999
+text = "Chat"
+
+[node name="Chat" parent="CanvasLayer/GUI/BottomPanel" instance=ExtResource( 6 )]
+[connection signal="pressed" from="CanvasLayer/GUI/BottomPanel/ChatButton" to="CanvasLayer/GUI" method="_on_Chat_pressed"]

@@ -87,4 +87,12 @@ class sort_by:
 			return true
 		return false
 
+func dist_to(obj1: Node2D, obj2: Node2D):
+	return obj1.position.distance_to(obj2.position)
+
+func swap(obj1, obj2):
+	var tmp = obj1
+	obj1 = obj2
+	obj2 = tmp
+
 

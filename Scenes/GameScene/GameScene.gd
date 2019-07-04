@@ -7,7 +7,7 @@ onready var floor_container: = $Floor
 onready var walls_container: = $Walls
 
 func _ready():
-	#$GenTerrain.init()
+	$GenTerrain.init()
 	$Nav_2d.init()
 	add_player(Vector2(-16, -16))
 	pass

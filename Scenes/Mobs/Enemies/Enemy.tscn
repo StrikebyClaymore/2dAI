@@ -7,12 +7,11 @@
 resource_local_to_scene = true
 extents = Vector2( 9.77109, 9.74794 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=2]
 resource_local_to_scene = true
 extents = Vector2( 47, 47 )
 
-[sub_resource type="Animation" id=2]
-resource_name = "move_down"
+[sub_resource type="Animation" id=3]
 length = 0.15
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -32,8 +31,7 @@ tracks/0/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "move_left"
+[sub_resource type="Animation" id=4]
 length = 0.15
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -53,8 +51,7 @@ tracks/0/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "move_right"
+[sub_resource type="Animation" id=5]
 length = 0.15
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -74,8 +71,7 @@ tracks/0/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "move_up"
+[sub_resource type="Animation" id=6]
 length = 0.15
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -143,7 +139,7 @@ valign = 1
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 6 )
+shape = SubResource( 2 )
 
 [node name="Priority" type="Label" parent="."]
 margin_left = -3.77779
@@ -153,10 +149,10 @@ margin_bottom = 9.0
 text = "0"
 
 [node name="Animation" type="AnimationPlayer" parent="."]
-anims/move_down = SubResource( 2 )
-anims/move_left = SubResource( 3 )
-anims/move_right = SubResource( 4 )
-anims/move_up = SubResource( 5 )
+anims/move_down = SubResource( 3 )
+anims/move_left = SubResource( 4 )
+anims/move_right = SubResource( 5 )
+anims/move_up = SubResource( 6 )
 anims/skip_step = SubResource( 7 )
 [connection signal="mouse_entered" from="." to="." method="_on_Enemy_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_Enemy_mouse_exited"]
